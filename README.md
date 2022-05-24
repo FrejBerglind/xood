@@ -20,6 +20,14 @@ They can be downloaded from Mahalanobis: https://github.com/pokaxpoka/deep_Mahal
 
 Download these models and save each state dictionary as models/dataset_name/model_name/state_dict.pt
 
+Download our collection of out-of-distribution datasets (https://drive.google.com/file/d/1Pdm3aJXDiwkfadZwSQOQFweIjTmy9Yk2/view?usp=sharing) 
+and place them in the datasets folder. 
+These are the same datasets as shared by ODIN (https://github.com/facebookresearch/odin), but we have removed any 
+zero padding, filtered out greyscale images and saved the images to a DataFrame.
+
+Download SVHN (train_32x32.mat, test_32x32.mat) from http://ufldl.stanford.edu/housenumbers/ 
+and put them in datasets/svhn.
+
 To fit and evaluate XOOD on small images run:
 
 ```eval
