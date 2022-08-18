@@ -40,6 +40,8 @@ def collect_table(datasets, models, methods, oods):
             for col in columns:
                 c = {}
                 for ood in oods:
+                    if {ood, dataset} == {"cifar10", "cifar100"}:
+                        continue
                     if ood in idx:
                         c[(dataset, model, ood)] = boldJoin([round(100 * summary[m][col].loc[ood], 1) for m in methods])
                 table[col] = pd.Series(c)
@@ -61,7 +63,7 @@ if __name__ == "__main__":
             models=["resnet", "densenet"],
             methods=methods,
             oods=["Uniform", "Gaussian", "TinyImageNet (Crop)", "TinyImageNet (Resize)", "LSUN (Crop)", "LSUN (Resize)", "iSUN", "SVHN",
-                  "Cifar100", "cifar10"]
+                  "Cifar100", "Cifar10"]
         ),
     ])
     table.to_latex("benchmarks/react_table.tex", escape=False, multirow=False)

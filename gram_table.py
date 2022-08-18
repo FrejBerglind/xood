@@ -73,6 +73,10 @@ def generate_table(name):
     table = load_gram()
     for method in ["lr", "mahala"]:
         table = generate(table, name, method)
+        if name.split("_")[0] == "cifar10":
+            table = table[table["out_dist"].to_numpy() != "CIFAR-100"]
+        if name.split("_")[0] == "cifar100":
+            table = table[table["out_dist"].to_numpy() != "CIFAR-10"]
     if exists("benchmarks/fulltable.pkl"):
         fulltable = pd.read_pickle("benchmarks/fulltable.pkl")
         fulltable = pd.concat([fulltable, table])
